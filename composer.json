@@ -1,0 +1,26 @@
+{
+	"name": "fkosmala/he-twitch",
+	"description": "PHP Script to create a donation bot with Hive Engine Token",
+	"type": "project",
+	"keywords": ["hive", "blog", "blockchain", "generator"],
+	"homepage": "https://github.com/fkosmala/he-twitch",
+	"license": "GPL-3.0-only",
+	"authors": [
+		{
+			"name": "Florent 'Bambukah' Kosmala",
+			"email": "contact@florent-kosmala.fr",
+			"homepage": "http://blog.florent-kosmala.fr/"
+		},
+		{
+			"name": "Itharagaian",
+			"email": "",
+			"homepage": "https://peakd.com/@itharagaian"
+		}
+	],
+  "require": {
+    "slim/slim": "4.*",
+    "slim/psr7": "^1.5",
+    "php-di/php-di": "^6.3",
+    "slim/twig-view": "^3.0"
+  }
+}

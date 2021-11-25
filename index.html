@@ -1,0 +1,73 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <style>
+  	body {
+  		text-align:center;
+  		font-size: 36pt;
+  	}
+  	
+  	.hide {
+  		display:none;
+  	}
+  	
+  	.lol {
+  		font-weight: bold;
+  		font-family: sans-serif;
+  		color: khaki;
+  		text-shadow: -2px 0 black,0 2px black, 2px 0 black, 0 -2px black;
+  	}
+  </style>
+</head>
+
+<body>
+	
+<div class="lol">
+	<p>
+		<video src="./anim.webm" width="1200" playsinline autoplay muted loop></video>
+	</p>
+	<p class="lol"><span class="from">{{ tx.from }}</span> a offert <span class="value">{{ tx.quantity }}</span> ECU</p>
+	<p class="memo">{{ tx.memo }}</p>
+	<p class="time hide">{{ tx.timestamp }}</p>
+</div>
+
+<script src="./jquery.min.js"></script>
+<script>
+$(function() {
+	txFrom = $('.from').text();
+	txValue = $('.value').text();
+	txMemo = $('.memo').text();
+	txTime = $('.time').text();
+	$('.lol').hide();
+
+  const audio = new Audio("source.mp3" );
+  audio.play();
+	
+	setInterval(function(){ 
+		$.get("{{ url_for('tx') }}",function (data) {
+			if ((data.timestamp > txTime) && data.from != '') {
+				txFrom = data.from;
+				txValue = data.quantity,
+				txMemo = data.memo;
+				txTime = data.timestamp;
+				$('.from').text(txFrom);
+				$('.value').text(txValue);
+				$('.memo').text(txMemo);
+				$('.time').text(txTime);
+				const audio = new Audio("./coin.mp3" );
+  			audio.play();
+				$('.lol').fadeIn(400).delay(10000).fadeOut(400);
+			}
+		});
+	}, 2000);
+	
+});
+</script>
+	
+</body>
+</html>
